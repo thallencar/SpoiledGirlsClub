@@ -265,3 +265,93 @@ Retorna um array com as informações de login do usuário
 	}
 ]
 ```
+
+### Cadastrar Usuário
+ 
+`POST`/usuario
+Cadastre um usuário com dados enviados no corpo de requisição
+ 
+#### Corpo da Requisição
+ 
+| ID          | INT    | OBRIGATÓRIO  |
+| ----------- | ------ | ------------ |
+| NOME        | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| SOBRENOME   | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| CPF         | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| EMAIL       | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| TELEFONE    | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| ENDEREÇO    | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| NUMEROCASA  | INT    | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| BAIRRO      | STRING | ORBIGATÓRIO  |
+| --          | -----  | ------------ |
+| CIDADE      | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| ESTADO      | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| CEP         | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| COMPLEMENTO | STRING | OPCIONAL     |
+| --          | -----  | ------------ |
+| SENHA       | STRING | OBRIGATÓRIO  |
+| --          | -----  | ------------ |
+| STATUS      | STRING | OBRIGATÓRIO  |
+ 
+#### Exemplo de Requisição
+ 
+```js
+[
+    {
+        "nome" : "nome_usuario";
+    }
+]
+```
+ 
+#### Exemplo de Resposta
+ 
+```js
+[
+    {
+        "id": 1;
+        "nome" :  "Sofia";
+        "sobrenome":  "Silva",
+        "CPF": "123-456-789-01",
+        "e-mail": "sofiasilva.corsi@gmail.com";
+        "Telefone": "+55 (11) 97352-8350"
+        "endereço" : "Avenida dos Sonhos",
+        "numero" : 456;
+        "Bairro": "Jardim Primavera",
+        "Cidade" : "Rio de Janeiro",
+        "Estado": "RJ";
+        "CEP" : 20000-000;
+        "Complemento": "",
+        "Senha" : "Kp$7Jn#WuX@3"
+        "Status": "Ativo"
+    }
+]
+```
+ 
+### Apagar Usuário
+ 
+`DELETE` /usuario/{id}
+Apaga o usuario com o id informado no path
+ 
+#### Código de Status
+ 
+Código | Descrição
+[204] | Usuário apagado com sucesso
+|------|---------
+[401] | Não autenticado. Se autentique em /login_admin
+|------|---------
+[404] | Não existe usuário com o `id` informado
+ 
+#### Atualizar Usuário
+ 
+`PUT` /usuario/'{id}'
+Atualiza os dados do usuário `id` informado no path, utilizando as informações do corpo requisição
