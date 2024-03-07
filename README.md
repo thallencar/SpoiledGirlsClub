@@ -4,35 +4,31 @@ API do projeto Spoiled Girls Club - Loja Virtual de Moda
 
 ## Requisitos
 
-- [] CRUD - Carrinho
-- [] CRUD - Administração de Peças
-- [] CRUD - Controle de Pedidos
-- [] CRUD - Usuários
-- [] Autenticação
+- [ ] CRUD - Carrinho
+- [ ] CRUD - Administração de Peças
+- [ ] CRUD - Controle de Pedidos
+- [ ] CRUD - Usuários
+- [ ] Autenticação
 
-## Endpoints
+## Endpoints 
+<!--ROUPAS E CARRINHO/><!--> 
+- [Listar Roupas](#listar-roupas)
+- [Cadastrar Roupa](#cadastrar-roupa)
+- [Apagar Roupa](#apagar-roupa)
+- [Atualizar Roupa](#atualizar-roupa)
+- [Adicionar Roupa](#adicionar-roupa)
 
-<!--ROUPAS E CARRINHO/><!-->
-
-- [Listar Roupas] (#listar-roupas)
-- [Cadastrar Roupa] (#cadastrar-roupa)
-- [Apagar Roupa] (#apagar-roupa)
-- [Atualizar Roupa] (#atualizar-roupa)
-- [Adicionar Roupa] (#adicionar-roupa)
-
-<!--PEDIDO/><!-->
-
-- [Listar Pedidos] (#listar-pedidos)
-- [Cadastrar Pedido] (#cadastrar-pedido)
-- [Apagar Pedido] (#apagar-pedido)
-- [Atualizar Pedido] (#atualizar-pedido)
-
-<!--USUÁRIO/><!-->
-
-- [Cadastrar Usuários] (#cadastrar-usuarios)
-- [Apagar Usuário] (#apagar-usuario)
-- [Atualizar Usuário] (#atualizar-usuario)
-- [Conectar Usuário] (#conectar-usuario)
+ <!--PEDIDO/><!--> 
+ - [Listar Pedidos](#listar-pedidos)
+ - [Cadastrar Pedido](#cadastrar-pedido)
+ - [Apagar Pedido](#apagar-pedido)
+ - [Atualizar Pedido](#atualizar-pedido) 
+ 
+ <!--USUÁRIO/><!--> 
+ - [Cadastrar Usuários](#cadastrar-usuarios)
+ - [Apagar Usuário](#apagar-usuario)
+ - [Atualizar Usuário](#atualizar-usuario)
+ - [Conectar Usuário](#conectar-usuario)
 
 ### Listar Roupas
 
@@ -60,7 +56,6 @@ Retorna um array com as roupas disponíveis na loja
 | Código | Descrição                                 |
 | ------ | ----------------------------------------- |
 | [200]  | Lista de categorias retornada com sucesso |
-| ------ | ---------                                 |
 | [401]  | Não autenticado. Se autentique em /login  |
 
 ### Cadastrar Roupa
@@ -70,19 +65,15 @@ Cadastre uma roupa com dados enviados no corpo de requisição
 
 #### Corpo da Requisição
 
-| ID                | INT    | OBRIGATÓRIO   |
-| ----------------- | ------ | ------------- |
-| NOME              | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| FOTO              | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| PRECO             | DOUBLE | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| DESCRIÇÃO         | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| TAMANHO           | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| QUANTIDADEESTOQUE | INT    | OBRIGATÓRIO   |
+Campo | Tipo | Obrigatório                           |
+| ------ | ----------------------------------------- |
+| ID                | INT    | ✅  |
+| NOME              | STRING | ✅  |
+| FOTO              | STRING | ✅  |
+| PRECO             | DOUBLE | ✅  |
+| DESCRIÇÃO         | STRING | ✅  |
+| TAMANHO           | STRING | ✅  |
+| QUANTIDADEESTOQUE | INT    | ✅  |
 
 #### Exemplo de Requisição
 
@@ -112,11 +103,10 @@ Cadastre uma roupa com dados enviados no corpo de requisição
 
 #### Código de Status
 
-Código | Descrição
+Código | Descrição                                 |
+| ------ | ----------------------------------------- |
 [201] | Roupa cadastrada com sucesso
-|------|---------
 [400] | Validação falhou. Verifique o corpo da requisição
-|------|---------
 [401] | Não autenticado. Se autentique em /login_admin
 
 ### Apagar Roupa
@@ -126,11 +116,10 @@ Apaga a roupa com o id informado no path
 
 #### Código de Status
 
-Código | Descrição
+Código | Descrição                                 |
+| ------ | ----------------------------------------- |
 [204] | Roupa apagada com sucesso
-|------|---------
 [401] | Não autenticado. Se autentique em /login_admin
-|------|---------
 [404] | Não existe roupa com o `id` informado
 
 #### Atualizar Roupa
@@ -164,10 +153,9 @@ Retorna um array com as informações do pedido do usuário
 
 #### Códigos de Status
 
-| Código | Descrição                                |
-| ------ | ---------------------------------------- |
+Código | Descrição                                 |
+| ------ | ----------------------------------------- |
 | [200]  | Lista de pedidos retornada com sucesso   |
-| ------ | ---------                                |
 | [401]  | Não autenticado. Se autentique em /login |
 
 ### Cadastrar Pedido
@@ -177,19 +165,15 @@ Cadastre um pedido com dados enviados no corpo de requisição
 
 #### Corpo da Requisição
 
-| ID                | INT    | OBRIGATÓRIO   |
-| ----------------- | ------ | ------------- |
-| NOME              | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| FOTO              | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| PRECO             | DOUBLE | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| DESCRIÇÃO         | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| TAMANHO           | STRING | OBRIGATÓRIO   |
-| --                | -----  | ------------- |
-| QUANTIDADEESTOQUE | INT    | OBRIGATÓRIO   |
+Campo | Tipo | Obrigatório                           |
+| ------ | ----------------------------------------- |
+| ID                | INT    | ✅  |
+| NOME              | STRING | ✅  |
+| FOTO              | STRING | ✅  |
+| PRECO             | DOUBLE | ✅  |
+| DESCRIÇÃO         | STRING | ✅  |
+| TAMANHO           | STRING | ✅  |
+| QUANTIDADEESTOQUE | INT    | ✅  |
 
 #### Exemplo de Requisição
 
@@ -219,11 +203,10 @@ Cadastre um pedido com dados enviados no corpo de requisição
 
 #### Código de Status
 
-Código | Descrição
+Código | Descrição                                 |
+| ------ | ----------------------------------------- |
 [201] | Pedido cadastrado com sucesso
-|------|---------
 [400] | Validação falhou. Verifique o corpo da requisição
-|------|---------
 [401] | Não autenticado. Se autentique em /login_admin
 
 ### Apagar Pedido
@@ -233,11 +216,10 @@ Apaga o pedido com o id informado no path
 
 #### Código de Status
 
-Código | Descrição
+Código | Descrição                                 |
+| ------ | ----------------------------------------- |
 [204] | Pedido apagado com sucesso
-|------|---------
 [401] | Não autenticado. Se autentique em /login_admin
-|------|---------
 [404] | Não existe pedido com o `id` informado
 
 #### Atualizar Pedido
@@ -272,36 +254,24 @@ Retorna um array com as informações de login do usuário
 Cadastre um usuário com dados enviados no corpo de requisição
  
 #### Corpo da Requisição
- 
-| ID          | INT    | OBRIGATÓRIO  |
-| ----------- | ------ | ------------ |
-| NOME        | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| SOBRENOME   | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| CPF         | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| EMAIL       | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| TELEFONE    | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| ENDEREÇO    | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| NUMEROCASA  | INT    | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| BAIRRO      | STRING | ORBIGATÓRIO  |
-| --          | -----  | ------------ |
-| CIDADE      | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| ESTADO      | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| CEP         | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| COMPLEMENTO | STRING | OPCIONAL     |
-| --          | -----  | ------------ |
-| SENHA       | STRING | OBRIGATÓRIO  |
-| --          | -----  | ------------ |
-| STATUS      | STRING | OBRIGATÓRIO  |
+
+Campo | Tipo | Obrigatório                           |
+| ------ | ----------------------------------------- |
+| ID          | INT    | ✅ |
+| NOME        | STRING | ✅ |
+| SOBRENOME   | STRING | ✅ |
+| CPF         | STRING | ✅ |
+| EMAIL       | STRING | ✅ |
+| TELEFONE    | STRING | ✅ |
+| ENDEREÇO    | STRING | ✅ |
+| NUMEROCASA  | INT    | ✅ |
+| BAIRRO      | STRING | ✅ |
+| CIDADE      | STRING | ✅ |
+| ESTADO      | STRING | ✅ |
+| CEP         | STRING | ✅ |
+| COMPLEMENTO | STRING | ❌|
+| SENHA       | STRING | ✅ |
+| STATUS      | STRING | ✅ |
  
 #### Exemplo de Requisição
  
@@ -344,11 +314,10 @@ Apaga o usuario com o id informado no path
  
 #### Código de Status
  
-Código | Descrição
+Código | Descrição                                 |
+| ------ | ----------------------------------------- |
 [204] | Usuário apagado com sucesso
-|------|---------
 [401] | Não autenticado. Se autentique em /login_admin
-|------|---------
 [404] | Não existe usuário com o `id` informado
  
 #### Atualizar Usuário
