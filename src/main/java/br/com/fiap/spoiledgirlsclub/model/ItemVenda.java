@@ -1,6 +1,8 @@
 package br.com.fiap.spoiledgirlsclub.model;
 import lombok.Data;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Data
@@ -8,7 +10,7 @@ import jakarta.persistence.Id;
 public class ItemVenda {
    
 
-    @Id
+    @Id@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String numeropedido;
     private Integer qtd;
@@ -19,4 +21,4 @@ public class ItemVenda {
     
     
                 
-        }
+}
