@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("Carrinho")
+@RequestMapping("cadastroPecas")
 @Slf4j
 public class ItemVendaController {
 
@@ -61,7 +61,7 @@ public class ItemVendaController {
     public void destroy(@PathVariable Long id){
         log.info("apagando categoria {}", id);
 
-        verificarSeCategoriaExiste(id);
+        verificarSeItemExiste(id);
         repository.deleteById(id);
     }
 
@@ -70,12 +70,12 @@ public class ItemVendaController {
         @PathVariable Long id, @RequestBody ItemVenda itemVenda){
         log.info("atualizando item venda {} para {}", id, itemVenda);
 
-        verificarSeCategoriaExiste(id);
+        verificarSeItemExiste(id);
         itemVenda.setId(id);
         return repository.save(itemVenda);
     }
 
-    private void verificarSeCategoriaExiste(Long id) {
+    private void verificarSeItemExiste(Long id) {
         repository
                 .findById(id)
                 .orElseThrow(

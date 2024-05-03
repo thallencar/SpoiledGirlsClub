@@ -3,6 +3,7 @@ package br.com.fiap.spoiledgirlsclub.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import br.com.fiap.spoiledgirlsclub.validation.Tamanho;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,14 +23,18 @@ public class Pedido {
     private Long id;
     @Size(min = 10, max = 150)
     private String nome;
-    private String foto;
     @Positive
-    private Double preco;
+    private BigDecimal preco;
+    @Tamanho
     private String tamanho;
     @PastOrPresent
     private LocalDate data;
     private String tipoFrete;
     @Positive
     private BigDecimal valorFrete;
+    @Positive
+    private BigDecimal valorTotal;
+    @Positive
     private int qtd;  
+    private String status;
 }
