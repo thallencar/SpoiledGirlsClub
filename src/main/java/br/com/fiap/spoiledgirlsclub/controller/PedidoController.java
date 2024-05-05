@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.fiap.spoiledgirlsclub.model.ItemVenda;
 import br.com.fiap.spoiledgirlsclub.model.Pedido;
 import br.com.fiap.spoiledgirlsclub.repository.PedidoRepository;
 import jakarta.validation.Valid;

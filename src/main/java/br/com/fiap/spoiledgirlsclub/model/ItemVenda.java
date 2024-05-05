@@ -30,5 +30,6 @@ public class ItemVenda {
     private String tamanho;
     @Size(min = 10, max = 150)
     private String descricao;
+    private String categoria;
               
 }
