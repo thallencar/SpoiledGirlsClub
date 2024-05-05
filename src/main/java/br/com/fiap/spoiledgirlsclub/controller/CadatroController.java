@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 import java.util.List;
 
+import org.hibernate.validator.cfg.context.Cascadable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,11 +28,11 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("cadastroPecas")
+@RequestMapping("cadastroUsuario")
 @Slf4j
 public class CadatroController {
 
-    @Autowired
+     @Autowired
     CadastroRepository repository;
 
     @GetMapping
@@ -41,45 +42,45 @@ public class CadatroController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public Cadastro create(@RequestBody @Valid Cadastro usuario){ 
-        log.info("cadastrando usuário {}", usuario );
-        repository.save(usuario);
-        return usuario;
+    public Cadastro create(@RequestBody @Valid Cadastro cadastro){ 
+        log.info("cadastrando usuário {}", cadastro );
+        repository.save(cadastro);
+        return cadastro;
     }
 
-    @GetMapping("{email}")
-    public ResponseEntity<Cadastro> show(@PathVariable String email){
-        log.info("buscando usuatio com email {} ", email);
+    @GetMapping("{id}")
+    public ResponseEntity<Cadastro> show(@PathVariable Long id){
+        log.info("buscando cadastro com id {} ", id);
 
         return repository
-            .findByEmail(email)
+            .findById(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
 
     }
     
-    @DeleteMapping("{email}")
+    @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
-    public void destroy(@PathVariable String email){
-        log.info("apagando usuario {}", email);
+    public void destroy(@PathVariable Long id){
+        log.info("apagando usuário {}", id);
 
-        verificarSeItemExiste(email);
-        repository.deleteByEmail(email);
+        verificarSeItemExiste(id);
+        repository.deleteById(id);
     }
 
-    @PutMapping("{email}")
+    @PutMapping("{id}")
     public Cadastro update(
-        @PathVariable String email, @RequestBody Cadastro cadastro){
-        log.info("atualizando usuario {} para {}", email, cadastro);
+        @PathVariable Long id, @RequestBody Cadastro cadastro){
+        log.info("atualizando usuário {} para {}", id, cadastro);
 
-        verificarSeItemExiste(email);
-        cadastro.setEmail(email);
+        verificarSeItemExiste(id);
+        cadastro.setId(id);
         return repository.save(cadastro);
     }
 
-    private void verificarSeItemExiste(String email) {
+    private void verificarSeItemExiste(Long id) {
         repository
-                .findByEmail(email)
+                .findById(id)
                 .orElseThrow(
                         () -> new ResponseStatusException( NOT_FOUND,
                                 "Não existe categoria com o id informado"));
