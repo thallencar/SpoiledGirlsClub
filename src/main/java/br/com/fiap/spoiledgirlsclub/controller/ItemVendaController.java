@@ -19,6 +19,10 @@ import java.util.List;
 
 import br.com.fiap.spoiledgirlsclub.model.ItemVenda;
 import br.com.fiap.spoiledgirlsclub.repository.ItemVendaRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,18 +31,27 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("cadastroPecas")
 @Slf4j
+@Tag(name = "Peças")
 public class ItemVendaController {
 
     @Autowired
     ItemVendaRepository repository;
 
+
     @GetMapping
+    @Operation(summary = "Listar Roupas",
+                description= "Retorna um Array com todas as roupas disponíveis para venda")
     public List<ItemVenda> index(){
         return repository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
+    @Operation(summary = "Cadastrar Roupas")
+    @ApiResponses({
+        @ApiResponse(responseCode = "201", description = "Cadastro criada com sucesso"),
+        @ApiResponse(responseCode = "401", description = "Não autenticado. Se autentique em /InformacoesPerfis")
+    })
     public ItemVenda create(@RequestBody @Valid ItemVenda roupa){ 
         log.info("cadastrando roupa {}", roupa );
         repository.save(roupa);
@@ -46,6 +59,7 @@ public class ItemVendaController {
     }
 
     @GetMapping("{id}")
+    @Operation(summary = "Listar a roupa com o id buscado")
     public ResponseEntity<ItemVenda> show(@PathVariable Long id){
         log.info("buscando roupa com id {} ", id);
 
@@ -58,6 +72,12 @@ public class ItemVendaController {
     
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
+    @Operation(summary = "Apagar Roupas")
+    @ApiResponses({
+        @ApiResponse(responseCode = "204", description = "Roupa apagada com sucesso"),
+        @ApiResponse(responseCode = "401", description = "Não autenticado. Se autentique em /InformacoesPerfis"),
+        @ApiResponse(responseCode = "404", description = "Não existe roupa com o id informado")
+    })
     public void destroy(@PathVariable Long id){
         log.info("apagando categoria {}", id);
 
@@ -66,6 +86,7 @@ public class ItemVendaController {
     }
 
     @PutMapping("{id}")
+    @Operation(summary = "Atualizar Informações sobre as Roupas")
     public ItemVenda update(
         @PathVariable Long id, @RequestBody ItemVenda itemVenda){
         log.info("atualizando item venda {} para {}", id, itemVenda);

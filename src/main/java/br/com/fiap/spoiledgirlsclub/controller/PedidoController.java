@@ -17,6 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.spoiledgirlsclub.model.Pedido;
 import br.com.fiap.spoiledgirlsclub.repository.PedidoRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,16 +32,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("Carrinho")
 @Slf4j
+@Tag(name = "Pedidos")
 public class PedidoController {
     
     @Autowired
     PedidoRepository repository;
 
     @GetMapping
+    @Operation(summary = "Listar Pedidos",
+                description= " Retorna um array com as informações do pedido do usuário")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Lista de pedidos retornada com sucesso"),
+        @ApiResponse(responseCode = "401", description = "Não autenticado. Se autentique em /InformacoesPerfis")
+    })
     public List<Pedido> index(){
         return repository.findAll();
     }
 
+    @Operation(summary = "Cadastrar Pedidos")
     @PostMapping
     @ResponseStatus(CREATED)
     public Pedido create(@RequestBody @Valid Pedido pedido){ 
@@ -46,7 +58,9 @@ public class PedidoController {
         return pedido;
     }
 
+    
      @GetMapping("{id}")
+     @Operation(summary = "Lista informações sobre o pedido com o id buscado")
     public ResponseEntity<Pedido> show(@PathVariable Long id){
         log.info("buscando roupa com id {} ", id);
 
@@ -59,6 +73,12 @@ public class PedidoController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
+    @Operation(summary = "Apagar Pedido")
+    @ApiResponses({
+        @ApiResponse(responseCode = "204", description = "Pedido apagada com sucesso"),
+        @ApiResponse(responseCode = "401", description = "Não autenticado. Se autentique em /InformacoesPerfis"),
+        @ApiResponse(responseCode = "404", description = "Não existe pedido com o id informado")
+    })
     public void destroy(@PathVariable Long id){
         log.info("apagando categoria {}", id);
 
@@ -67,6 +87,7 @@ public class PedidoController {
     }
 
     @PutMapping("{id}")
+    @Operation(summary = "Atualizar Informações sobre as Roupas")
     public Pedido update(
         @PathVariable Long id, @RequestBody Pedido pedido){
         log.info("atualizando pedido {} para {}", id, pedido);
